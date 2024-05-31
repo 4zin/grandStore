@@ -1,34 +1,47 @@
-import { HttpException, Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { RegisterAuthDto } from './dto/register-auth.dto';
 import { hash, compare } from 'bcrypt'
 import { PrismaService } from 'src/prisma.service';
 import { LoginAuthDto } from './dto/login-auth.dto';
 import { JwtService } from '@nestjs/jwt';
+import { randomBytes } from 'crypto';
+import { MailService } from './mail.service';
 
 @Injectable()
 export class AuthService {
 
     constructor(
         private readonly prisma: PrismaService,
-        private jwtService: JwtService
-    ) {}
+        private jwtService: JwtService,
+        private mailservice: MailService
+    ) { }
 
     async register(userObject: RegisterAuthDto) {
-        const { password } = userObject;
+        const { password, email } = userObject;
         const plainToHash = await hash(password, 10);
+        const confirmationToken = randomBytes(32).toString('hex')
 
-        userObject = {...userObject, password: plainToHash}
+        userObject = { ...userObject, password: plainToHash, confirmationToken }
 
-        return this.prisma.user.create({
+        await this.prisma.user.create({
             data: userObject
         })
+
+        const confirmLink = `http://localhost:3000/auth/confirm?token=${confirmationToken}`;
+        await this.mailservice.sendMail(
+            email,
+            'Confirm your email',
+            `Click here to confirm your email: ${confirmLink}`
+        )
+
+        return { message: 'Registration successful, please check your email for confirmation link.' }
     }
 
     async login(userObject: LoginAuthDto) {
-        const { email, password } = userObject;
-        
+        const { email, password, emailConfirmed } = userObject;
+
         const findUser = await this.prisma.user.findUnique(
-            {where: { email }}
+            { where: { email } }
         )
 
         if (!findUser) throw new HttpException('USER_NOT_FOUND', 404)
@@ -37,16 +50,39 @@ export class AuthService {
 
         if (!checkPassword) throw new HttpException('WRONG_PASSWORD', 403)
 
-        const payload = {id: findUser.id, name: findUser.name}
+        const isEmailConfirmed = await this.prisma.user.findFirst({
+            where: { emailConfirmed }
+        })        
+
+        if (!isEmailConfirmed.emailConfirmed) throw new HttpException('EMAIL_NOT_CONFIRMED', 403)
+
+        const payload = { id: findUser.id, name: findUser.name }
         const token = this.jwtService.sign(payload)
-       
-        const {password: _, ...userData} = findUser
+
+        const { password: _, ...userData } = findUser
 
         return {
             user: userData,
             token
         }
-        
+
+    }
+
+    async confirmEmail(token: string) {
+        const user = await this.prisma.user.findFirst({
+            where: {confirmationToken: token},
+        });
+
+        if (!user) {
+            throw new HttpException('Invalid token', HttpStatus.BAD_REQUEST);
+        }
+
+        await this.prisma.user.update({
+            where: { id: user.id },
+            data: { confirmationToken: null, emailConfirmed: true },
+        });
+
+        return { message: 'Email confirmed successfully.' };
     }
 
 }
