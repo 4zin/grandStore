@@ -7,4 +7,6 @@ export class LoginAuthDto {
 
     @IsString()
     password: string;
+
+    emailConfirmed: boolean
 }
