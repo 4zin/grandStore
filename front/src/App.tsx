@@ -5,6 +5,7 @@ import Login from "./views/login/Login";
 import Home from "./views/home/Home";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { NavBar } from "./components/NavBar";
+import CreateProducts from "./views/products/CreateProducts";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
             </ProtectedRoute>
           }
         />
+        <Route path="/createProducts" element={<CreateProducts />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
       </Routes>
