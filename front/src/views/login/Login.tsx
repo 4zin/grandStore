@@ -30,6 +30,8 @@ export default function Login() {
         localStorage.setItem("token", response.token);
         login(response.user);
         navigate("/home");
+        setEmail("");
+        setPassword("");
       }
     } catch (error: any) {
       setError("User or password is incorrect");
@@ -49,6 +51,7 @@ export default function Login() {
             <input
               type="text"
               value={email}
+              autoFocus
               placeholder="Enter your email"
               onChange={(event) => setEmail(event.target.value)}
               required

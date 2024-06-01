@@ -4,10 +4,12 @@ import Register from "./views/register/Register";
 import Login from "./views/login/Login";
 import Home from "./views/home/Home";
 import ProtectedRoute from "./components/ProtectedRoute";
+import { NavBar } from "./components/NavBar";
 
 function App() {
   return (
     <React.Fragment>
+      <NavBar />
       <Routes>
         <Route
           path="/home"
