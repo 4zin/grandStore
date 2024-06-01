@@ -12,6 +12,8 @@ export default function Register() {
   const {
     name,
     setName,
+    lastName,
+    setLastName,
     userName,
     setUserName,
     email,
@@ -24,7 +26,7 @@ export default function Register() {
   } = context;
 
   return (
-    <section className="border rounded-md p-8">
+    <section className="border rounded-md px-8 py-6">
       <h1 className="flex justify-center text-4xl font-bold">Register Page</h1>
       <form
         onSubmit={submitHandler}
@@ -37,6 +39,17 @@ export default function Register() {
               type="text"
               value={name}
               onChange={(event) => setName(event.target.value)}
+              required
+              className="rounded px-2 py-1"
+            />
+          </div>
+
+          <div className="flex flex-col">
+            <label className="mb-2">Last Name: </label>
+            <input
+              type="text"
+              value={lastName}
+              onChange={(event) => setLastName(event.target.value)}
               required
               className="rounded px-2 py-1"
             />
@@ -86,7 +99,11 @@ export default function Register() {
 
       <div className="flex flex-col items-center justify-center">
         {message && <p className="text-green-500 font-semibold">{message}</p>}
-        {error && <p className="text-red-600 font-semibold">{error}</p>}
+        {error && (
+          <p className="text-red-600 font-semibold w-[20rem] text-center mb-2">
+            {error}
+          </p>
+        )}
 
         <p className="flex gap-2">
           Already have an account?

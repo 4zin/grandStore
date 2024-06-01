@@ -14,7 +14,7 @@ export function NavBar() {
   const { isAuthenticated, logout } = authContext;
 
   return (
-    <header className="flex justify-between items-center bg-gray-800 text-white p-4 w-full fixed top-0">
+    <header className="flex justify-between items-center bg-gray-800 text-white p-4 w-full top-0">
       <Link to="/">
         <h1 className="text-3xl">Grand Store</h1>
       </Link>

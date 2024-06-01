@@ -1,6 +1,8 @@
 export type RegisterContextProps = {
     name: string,
     setName: (name: string) => void,
+    lastName: string,
+    setLastName: (name: string) => void,
     userName: string,
     setUserName: (name: string) => void,
     email: string,
@@ -19,6 +21,8 @@ export type LoginContextProps = {
     password: string
     setPassword: (name: string) => void,
     loginHandler: (event: React.FormEvent) => Promise<LoginResponse | void>,
+    error: string,
+    setError: (error: string) => void
 }
 
 export type LoginResponse = {

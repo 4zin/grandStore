@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { LoginContext } from "../../components/context/loginContext";
 import { AuthContext } from "../../components/context/authContext";
@@ -17,9 +17,17 @@ export default function Login() {
     throw new Error("AuthProvider must be used within a AuthProvider");
   }
 
-  const { email, setEmail, password, setPassword, loginHandler } = loginContext;
+  const {
+    email,
+    setEmail,
+    password,
+    setPassword,
+    loginHandler,
+    error,
+    setError,
+  } = loginContext;
   const { login } = authContext;
-  const [error, setError] = useState<string>("");
+  // const [error, setError] = useState<string>("");
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -34,12 +42,12 @@ export default function Login() {
         setPassword("");
       }
     } catch (error: any) {
-      setError("User or password is incorrect");
+      setError(error.response?.data?.message);
     }
   };
 
   return (
-    <section className="border rounded-md p-8">
+    <section className="flex flex-col items-center justify-center border rounded-md p-8 mt-12">
       <h1 className="flex justify-center text-4xl font-bold">Grand Store</h1>
       <form
         onSubmit={handleSubmit}
