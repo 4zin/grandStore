@@ -11,3 +11,4 @@
 
 - [] Add regex for forms
 - [] Navbar
+- [] redirect to a confirmation view. If confirm redirect to home
