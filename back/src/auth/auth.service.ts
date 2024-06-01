@@ -25,6 +25,12 @@ export class AuthService {
 
         if (findUserName) throw new HttpException('Username already exists', 409)
 
+        const findEmail = await this.prisma.user.findUnique({
+            where: { email: userObject.email}
+        })
+    
+        if (findEmail) throw new HttpException('Email already exists', 409)
+
         const plainToHash = await hash(password, 10);
         const confirmationToken = randomBytes(32).toString('hex')
 
@@ -47,26 +53,26 @@ export class AuthService {
     async login(userObject: LoginAuthDto) {
         const { email, password, emailConfirmed } = userObject;
 
-        const findUser = await this.prisma.user.findUnique(
+        const findEmail = await this.prisma.user.findUnique(
             { where: { email } }
         )
 
-        if (!findUser) throw new HttpException('USER_NOT_FOUND', 404)
+        if (!findEmail) throw new HttpException('Email not found', 404)
 
-        const checkPassword = await compare(password, findUser.password)
+        const checkPassword = await compare(password, findEmail.password)
 
-        if (!checkPassword) throw new HttpException('WRONG_PASSWORD', 403)
+        if (!checkPassword) throw new HttpException('Wrong password', 403)
 
         const isEmailConfirmed = await this.prisma.user.findFirst({
             where: { emailConfirmed }
         })        
 
-        if (!isEmailConfirmed.emailConfirmed) throw new HttpException('EMAIL_NOT_CONFIRMED', 403)
+        if (!isEmailConfirmed.emailConfirmed) throw new HttpException('Please confirm your email', 403)
 
-        const payload = { id: findUser.id, name: findUser.name }
+        const payload = { id: findEmail.id, name: findEmail.name }
         const token = this.jwtService.sign(payload)
 
-        const { password: _, ...userData } = findUser
+        const { password: _, ...userData } = findEmail
 
         return {
             user: userData,

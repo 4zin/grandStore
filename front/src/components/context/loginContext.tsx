@@ -3,32 +3,38 @@ import React, { createContext, useState } from "react";
 import { LoginContextProps } from "../../types";
 import { login } from "../../services/authService";
 
-export const LoginContext = createContext<LoginContextProps | undefined>(undefined)
+export const LoginContext = createContext<LoginContextProps | undefined>(
+  undefined
+);
 
-export function LoginProvider({children}: {children: React.ReactNode}) {
-    const [email, setEmail] = useState<string>('')
-    const [password, setPassword] = useState<string>('')
+export function LoginProvider({ children }: { children: React.ReactNode }) {
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [error, setError] = useState<string>("");
 
-    const loginHandler = async (event: React.FormEvent) => {
-        event.preventDefault()
-        try {
-            const data = await login(email, password)
-            return data
-        } catch (error: any) {
-            throw new Error(error.response.data.message)
-        }      
+  const loginHandler = async (event: React.FormEvent) => {
+    event.preventDefault();
+    try {
+      const data = await login(email, password);
+      return data;
+    } catch (error: any) {
+      setError(error.response.data.message);
     }
+  };
 
-    return (
-        <LoginContext.Provider value={{
-            email,
-            setEmail,
-            password,
-            setPassword,
-            loginHandler,
-        }}>
-            {children}
-        </LoginContext.Provider>
-    )
-
+  return (
+    <LoginContext.Provider
+      value={{
+        email,
+        setEmail,
+        password,
+        setPassword,
+        loginHandler,
+        error,
+        setError,
+      }}
+    >
+      {children}
+    </LoginContext.Provider>
+  );
 }
