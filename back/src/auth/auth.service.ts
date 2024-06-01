@@ -18,6 +18,13 @@ export class AuthService {
 
     async register(userObject: RegisterAuthDto) {
         const { password, email } = userObject;
+
+        const findUserName = await this.prisma.user.findUnique({
+            where: { userName: userObject.userName}
+        })
+
+        if (findUserName) throw new HttpException('Username already exists', 409)
+
         const plainToHash = await hash(password, 10);
         const confirmationToken = randomBytes(32).toString('hex')
 
