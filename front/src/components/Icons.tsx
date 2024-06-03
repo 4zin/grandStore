@@ -40,7 +40,7 @@ export function LogOutIcon() {
     >
       <path
         fill="currentColor"
-        fill-rule="evenodd"
+        fillRule="evenodd"
         d="M3 5c0-1.1.9-2 2-2h8v2H5v14h8v2H5c-1.1 0-2-.9-2-2zm14.176 6L14.64 8.464l1.414-1.414 4.95 4.95-4.95 4.95-1.414-1.414L17.176 13H10.59v-2z"
       />
     </svg>
@@ -51,20 +51,43 @@ export function CartIcon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="50"
-      height="60"
+      width="40"
+      height="50"
       viewBox="0 0 24 24"
     >
-      <path
-        fill="currentColor"
-        fill-rule="evenodd"
-        d="M3.04 2.292a.75.75 0 0 0-.497 1.416l.261.091c.668.235 1.107.39 1.43.549.303.149.436.27.524.398.09.132.16.314.2.677.04.38.042.875.042 1.615V9.64c0 2.942.063 3.912.93 4.826.866.914 2.26.914 5.05.914h5.302c1.561 0 2.342 0 2.893-.45.552-.45.71-1.214 1.025-2.742l.5-2.425c.347-1.74.52-2.609.076-3.186S18.816 6 17.131 6H6.492a9.033 9.033 0 0 0-.043-.738c-.054-.497-.17-.95-.452-1.362-.284-.416-.662-.682-1.103-.899-.412-.202-.936-.386-1.552-.603zM13 8.25a.75.75 0 0 1 .75.75v1.25H15a.75.75 0 0 1 0 1.5h-1.25V13a.75.75 0 0 1-1.5 0v-1.25H11a.75.75 0 0 1 0-1.5h1.25V9a.75.75 0 0 1 .75-.75"
-        clip-rule="evenodd"
-      />
-      <path
-        fill="currentColor"
-        d="M7.5 18a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3m9 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3"
-      />
+      <g
+        fill="none"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
+      >
+        <path d="M4 19a2 2 0 1 0 4 0 2 2 0 0 0-4 0" />
+        <path d="M12.5 17H6V3H4" />
+        <path d="m6 5 14 1-.86 6.017M16.5 13H6m10 6h6m-3-3v6" />
+      </g>
+    </svg>
+  );
+}
+
+export function ClearCartIcon() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="40"
+      height="50"
+      viewBox="0 0 24 24"
+    >
+      <g
+        fill="none"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
+      >
+        <path d="M4 19a2 2 0 1 0 4 0 2 2 0 1 0-4 0m13-2a2 2 0 1 0 2 2" />
+        <path d="M17 17H6V6m3.239-.769L20 6l-1 7h-2m-4 0H6M3 3l18 18" />
+      </g>
     </svg>
   );
 }

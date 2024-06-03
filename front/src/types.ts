@@ -52,7 +52,8 @@ export type AuthContextProps = {
     user: User | null,
     isAuthenticated: boolean,
     login: (user: User) => void,
-    logout: () => void
+    logout: () => void,
+    loading: boolean
 }
 
 export type Products = {
@@ -80,3 +81,23 @@ export type CreateProductContextProps = {
     message: string,
     error: string
 }
+
+export type ProductsCartType = {
+    id: string
+    title: string
+    quantity: number
+    price: number
+    images: string
+}[]
+
+export type CartContextProps = {
+    cart: Products[]
+    addToCart: (products: ProductsCartType[0]) => void
+    removeFromCart: (products: ProductsCartType[0]) => void
+    clearCart: () => void
+}
+
+export type CartAction = 
+    | { type: 'ADD_TO_CART'; payload: ProductsCartType[0] }
+    | { type: 'REMOVE_FROM_CART'; payload: { id: string } }
+    | { type: 'CLEAR_CART'; payload?: never}

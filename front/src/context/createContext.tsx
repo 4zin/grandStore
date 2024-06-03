@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { createContext, useState } from "react";
-import { CreateProductContextProps } from "../../types";
-import { createProducts } from "../../services/productsService";
+import { CreateProductContextProps } from "../types";
+import { createProducts } from "../services/productsService";
 
 export const CreateContext = createContext<
   CreateProductContextProps | undefined

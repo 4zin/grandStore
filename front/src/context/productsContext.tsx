@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from "react";
-import { Products, ProductsContextProps } from "../../types";
-import { getProdcuts } from "../../services/productsService";
+import { Products, ProductsContextProps } from "../types";
+import { getProdcuts } from "../services/productsService";
 
 export const ProductsContext = createContext<ProductsContextProps | undefined>(
   undefined

@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { LoginContext } from "../../components/context/loginContext";
-import { AuthContext } from "../../components/context/authContext";
+import { LoginContext } from "../../context/loginContext";
+import { AuthContext } from "../../context/authContext";
 
 export default function Login() {
   const loginContext = useContext(LoginContext);
@@ -36,7 +36,7 @@ export default function Login() {
       if (response && response.token) {
         localStorage.setItem("token", response.token);
         login(response.user);
-        navigate("/home");
+        navigate("/");
         setEmail("");
         setPassword("");
       }

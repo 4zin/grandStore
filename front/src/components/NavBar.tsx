@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { Button } from "./Button";
 import { LogOutIcon, LoginIcon, ProfileIcon } from "./Icons";
 import { useContext } from "react";
-import { AuthContext } from "./context/authContext";
+import { AuthContext } from "../context/authContext";
 
 export function NavBar() {
   const authContext = useContext(AuthContext);
