@@ -27,7 +27,6 @@ export default function Login() {
     setError,
   } = loginContext;
   const { login } = authContext;
-  // const [error, setError] = useState<string>("");
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
