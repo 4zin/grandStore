@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { createContext, useState } from "react";
-import { LoginContextProps } from "../../types";
-import { login } from "../../services/authService";
+import { LoginContextProps } from "../types";
+import { login } from "../services/authService";
 
 export const LoginContext = createContext<LoginContextProps | undefined>(
   undefined

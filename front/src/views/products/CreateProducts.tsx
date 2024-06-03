@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { CreateContext } from "../../components/context/createContext";
+import { CreateContext } from "../../context/createContext";
 
 export default function CreateProducts() {
   const createProductsContext = useContext(CreateContext);

@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import Card from "../../components/Card";
-import { ProductsContext } from "../../components/context/productsContext";
+import { ProductsContext } from "../../context/productsContext";
 
 export default function Products() {
   const productsContext = useContext(ProductsContext);

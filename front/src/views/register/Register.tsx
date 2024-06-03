@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { RegisterContext } from "../../components/context/registerContext";
+import { RegisterContext } from "../../context/registerContext";
 import { Link } from "react-router-dom";
 
 export default function Register() {
@@ -69,7 +69,7 @@ export default function Register() {
           <div className="flex flex-col">
             <label className="mb-2">Email: </label>
             <input
-              type="text"
+              type="email"
               value={email}
               placeholder="example@ex.com"
               onChange={(event) => setEmail(event.target.value)}

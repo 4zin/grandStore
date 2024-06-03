@@ -2,16 +2,16 @@ import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import { BrowserRouter } from "react-router-dom";
 import "./index.css";
-import { RegisterProvider } from "./components/context/registerContext.tsx";
-import { LoginProvider } from "./components/context/loginContext.tsx";
-import { AuthProvider } from "./components/context/authContext.tsx";
-import { CreateProvider } from "./components/context/createContext.tsx";
-import { ProductsProvider } from "./components/context/productsContext.tsx";
+import { RegisterProvider } from "./context/registerContext.tsx";
+import { LoginProvider } from "./context/loginContext.tsx";
+import { AuthProvider } from "./context/authContext.tsx";
+import { CreateProvider } from "./context/createContext.tsx";
+import { ProductsProvider } from "./context/productsContext.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  <RegisterProvider>
-    <LoginProvider>
-      <AuthProvider>
+  <AuthProvider>
+    <RegisterProvider>
+      <LoginProvider>
         <CreateProvider>
           <ProductsProvider>
             <BrowserRouter>
@@ -19,7 +19,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
             </BrowserRouter>
           </ProductsProvider>
         </CreateProvider>
-      </AuthProvider>
-    </LoginProvider>
-  </RegisterProvider>
+      </LoginProvider>
+    </RegisterProvider>
+  </AuthProvider>
 );

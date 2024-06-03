@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { createContext, useState } from "react";
-import { RegisterContextProps } from "../../types";
-import { register } from "../../services/authService";
+import { RegisterContextProps } from "../types";
+import { register } from "../services/authService";
 
 export const RegisterContext = createContext<RegisterContextProps | undefined>(
   undefined
@@ -19,7 +19,7 @@ export function RegisterProvider({ children }: { children: React.ReactNode }) {
   const submitHandler = async (event: React.FormEvent) => {
     event.preventDefault();
     try {
-      await register(name, userName, email, password);
+      await register(name, lastName, userName, email, password);
       setMessage(
         "Registration successful, please check your email for confirmation link."
       );
