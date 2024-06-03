@@ -13,7 +13,7 @@
 
 - [✔] Add regex for forms
 - [✔] Navbar
-- [] Form to create products
+- [✔] Form to create products
 - [] Admin view
   - [] User details
   - [] User purchase details
