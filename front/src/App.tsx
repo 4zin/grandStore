@@ -20,6 +20,7 @@ function App() {
             </ProtectedRoute>
           }
         />
+        <Route path="/" element={<Home />} />
         <Route path="/createProducts" element={<CreateProducts />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />

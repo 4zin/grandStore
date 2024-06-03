@@ -54,3 +54,29 @@ export type AuthContextProps = {
     login: (user: User) => void,
     logout: () => void
 }
+
+export type Products = {
+    id: string,
+    title: string,
+    quantity: number,
+    price: number,
+    images: string
+}
+
+export type ProductsContextProps = {
+    products: Products[],
+}
+
+export type CreateProductContextProps = {
+    title: string,
+    setTitle: (name: string) => void,
+    quantity: number,
+    setQuantity: (name: number) => void,
+    price: number,
+    setPrice: (name: number) => void,
+    images: string,
+    setImages: (name: string) => void,
+    submitHandler: (event: React.FormEvent) => void,
+    message: string,
+    error: string
+}
