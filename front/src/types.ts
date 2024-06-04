@@ -64,8 +64,27 @@ export type Products = {
     images: string
 }
 
+type OrderProducts = Omit<Products, 'quantity'>
+
+type OrderItem = {
+    id: string,
+    orderId: string,
+    productId: string,
+    quantity: number,
+    product: OrderProducts
+}
+
+export type Orders = {
+    id: string,
+    userId: string,
+    createdAt: string,
+    items: OrderItem[]
+}
+
 export type ProductsContextProps = {
     products: Products[],
+    orders: Orders[]
+    addProduct: (product: Products) => void
 }
 
 export type CreateProductContextProps = {

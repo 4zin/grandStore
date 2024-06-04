@@ -7,6 +7,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import { NavBar } from "./components/NavBar";
 import CreateProducts from "./views/products/CreateProducts";
 import { CartProvider } from "./context/cartContext";
+import Orders from "./views/products/Orders";
 
 function App() {
   return (
@@ -22,7 +23,8 @@ function App() {
               </ProtectedRoute>
             }
           />
-          <Route path="/createProducts" element={<CreateProducts />} />
+          <Route path="/create" element={<CreateProducts />} />
+          <Route path="/Orders" element={<Orders />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
         </Routes>

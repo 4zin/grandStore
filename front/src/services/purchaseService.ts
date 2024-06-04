@@ -16,3 +16,17 @@ export const createOrder = async (items: PurchaseCart[]) => {
         throw new Error('Error creating order');
     }
 }
+
+export const getOrders = async () => {
+    try {
+        const response = await axios.get(BASE_URL, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`
+            }
+        })
+
+        return response.data
+    } catch (error) {
+        throw new Error('Error getting order');
+    }
+}

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Button } from "./Button";
-import { LogOutIcon, LoginIcon, ProfileIcon } from "./Icons";
+import { LogOutIcon, LoginIcon, OrdersIcon, ProfileIcon } from "./Icons";
 import { useContext } from "react";
 import { AuthContext } from "../context/authContext";
 
@@ -20,6 +20,7 @@ export function NavBar() {
       </Link>
       {isAuthenticated ? (
         <div className="flex justify-center gap-4 mr-4">
+          <Button text="Orders" link="/orders" icon={<OrdersIcon />} />
           <Button text="Profile" link="/profile" icon={<ProfileIcon />} />
           <Button
             text="Logout"
