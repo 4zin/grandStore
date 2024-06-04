@@ -101,3 +101,8 @@ export type CartAction =
     | { type: 'ADD_TO_CART'; payload: ProductsCartType[0] }
     | { type: 'REMOVE_FROM_CART'; payload: { id: string } }
     | { type: 'CLEAR_CART'; payload?: never}
+
+export type PurchaseCart = {
+    productId: string
+    quantity: number
+}

@@ -1,6 +1,8 @@
 import { useId, useState } from "react";
 import { useCart } from "../hooks/useCart";
 import { CartIcon, ClearCartIcon } from "./Icons";
+import { PurchaseCart } from "../types";
+import { createOrder } from "../services/purchaseService";
 
 interface CartItemProps {
   images: string;
@@ -46,6 +48,22 @@ export function Cart() {
 
   const { cart, clearCart, addToCart } = useCart();
 
+  const handlePurchase = async () => {
+    try {
+      const orderData: PurchaseCart[] = cart.map((product) => ({
+        productId: product.id,
+        quantity: product.quantity,
+      }));
+
+      await createOrder(orderData);
+      alert("Purchase successful!");
+      clearCart();
+    } catch (error) {
+      console.error(error);
+      alert("Purchase failed.");
+    }
+  };
+
   return (
     <>
       <label
@@ -76,6 +94,10 @@ export function Cart() {
             />
           ))}
         </ul>
+
+        <button className="mt-[16px]" onClick={handlePurchase}>
+          Purchase
+        </button>
 
         <button className="mt-[16px]" onClick={clearCart}>
           <ClearCartIcon />

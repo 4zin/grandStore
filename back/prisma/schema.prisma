@@ -17,6 +17,7 @@ model User {
   role              Role    @default(USER)
   confirmationToken String?
   emailConfirmed    Boolean @default(false)
+  Order             Order[]
 }
 
 enum Role {
@@ -25,9 +26,27 @@ enum Role {
 }
 
 model Products {
-  id       String @id @default(uuid())
-  title    String
-  price    Int
-  images   String
-  quantity Int
+  id        String      @id @default(uuid())
+  title     String
+  price     Int
+  images    String
+  quantity  Int
+  OrderItem OrderItem[]
+}
+
+model Order {
+  id        String      @id @default(uuid())
+  userId    String
+  user      User        @relation(fields: [userId], references: [id])
+  createdAt DateTime    @default(now())
+  items     OrderItem[]
+}
+
+model OrderItem {
+  id        String   @id @default(uuid())
+  orderId   String
+  productId String
+  product   Products @relation(fields: [productId], references: [id])
+  quantity  Int
+  order     Order    @relation(fields: [orderId], references: [id])
 }

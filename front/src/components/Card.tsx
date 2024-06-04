@@ -1,7 +1,10 @@
+import { useCart } from "../hooks/useCart";
 import { Products } from "../types";
 import { CartIcon } from "./Icons";
 
 export default function Card({ products }: { products: Products[] }) {
+  const { addToCart } = useCart();
+
   return (
     <ul className="grid grid-cols-3 gap-4">
       {products.map((products) => (
@@ -20,7 +23,7 @@ export default function Card({ products }: { products: Products[] }) {
               <p>Price: {products.price}</p>
               <p>Quantity: {products.quantity}</p>
             </div>
-            <button>{<CartIcon />}</button>
+            <button onClick={() => addToCart(products)}>{<CartIcon />}</button>
           </div>
         </li>
       ))}
