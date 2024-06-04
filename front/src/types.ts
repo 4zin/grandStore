@@ -64,8 +64,27 @@ export type Products = {
     images: string
 }
 
+type OrderProducts = Omit<Products, 'quantity'>
+
+type OrderItem = {
+    id: string,
+    orderId: string,
+    productId: string,
+    quantity: number,
+    product: OrderProducts
+}
+
+export type Orders = {
+    id: string,
+    userId: string,
+    createdAt: string,
+    items: OrderItem[]
+}
+
 export type ProductsContextProps = {
     products: Products[],
+    orders: Orders[]
+    addProduct: (product: Products) => void
 }
 
 export type CreateProductContextProps = {
@@ -101,3 +120,8 @@ export type CartAction =
     | { type: 'ADD_TO_CART'; payload: ProductsCartType[0] }
     | { type: 'REMOVE_FROM_CART'; payload: { id: string } }
     | { type: 'CLEAR_CART'; payload?: never}
+
+export type PurchaseCart = {
+    productId: string
+    quantity: number
+}

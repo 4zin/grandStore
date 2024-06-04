@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { createContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
 import { CreateProductContextProps } from "../types";
 import { createProducts } from "../services/productsService";
+import { ProductsContext } from "./productsContext";
 
 export const CreateContext = createContext<
   CreateProductContextProps | undefined
@@ -15,10 +16,21 @@ export function CreateProvider({ children }: { children: React.ReactNode }) {
   const [message, setMessage] = useState<string>("");
   const [error, setError] = useState<string>("");
 
+  const productsContext = useContext(ProductsContext);
+
+  if (!productsContext) {
+    throw new Error(
+      "ProductsContext must be used within a ProductsContextProvider"
+    );
+  }
+
+  const { addProduct } = productsContext;
+
   const submitHandler = async (event: React.FormEvent) => {
     event.preventDefault();
     try {
-      await createProducts(title, quantity, price, images);
+      const newProduct = await createProducts(title, quantity, price, images);
+      addProduct(newProduct.data);
       setMessage("Product created successfully");
       setTitle("");
       setQuantity(0);

@@ -12,13 +12,13 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
   <AuthProvider>
     <RegisterProvider>
       <LoginProvider>
-        <CreateProvider>
-          <ProductsProvider>
+        <ProductsProvider>
+          <CreateProvider>
             <BrowserRouter>
               <App />
             </BrowserRouter>
-          </ProductsProvider>
-        </CreateProvider>
+          </CreateProvider>
+        </ProductsProvider>
       </LoginProvider>
     </RegisterProvider>
   </AuthProvider>
