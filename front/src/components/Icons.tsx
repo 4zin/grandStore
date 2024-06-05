@@ -47,7 +47,7 @@ export function LogOutIcon() {
   );
 }
 
-export function CartIcon() {
+export function AddCartIcon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -65,6 +65,52 @@ export function CartIcon() {
         <path d="M4 19a2 2 0 1 0 4 0 2 2 0 0 0-4 0" />
         <path d="M12.5 17H6V3H4" />
         <path d="m6 5 14 1-.86 6.017M16.5 13H6m10 6h6m-3-3v6" />
+      </g>
+    </svg>
+  );
+}
+
+export function RemoveCartIcon() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="40"
+      height="50"
+      viewBox="0 0 24 24"
+    >
+      <g
+        fill="none"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
+      >
+        <path d="M4 19a2 2 0 1 0 4 0 2 2 0 0 0-4 0" />
+        <path d="M12.5 17H6V3H4" />
+        <path d="m6 5 14 1-1 7H6m10 6h6" />
+      </g>
+    </svg>
+  );
+}
+
+export function CartIcon() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="40"
+      height="50"
+      viewBox="0 0 24 24"
+    >
+      <g
+        fill="none"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
+      >
+        <path d="M4 19a2 2 0 1 0 4 0 2 2 0 1 0-4 0m11 0a2 2 0 1 0 4 0 2 2 0 1 0-4 0" />
+        <path d="M17 17H6V3H4" />
+        <path d="m6 5 14 1-1 7H6" />
       </g>
     </svg>
   );

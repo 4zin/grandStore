@@ -14,7 +14,7 @@ export default function Register() {
     setName,
     lastName,
     setLastName,
-    userName,
+    username,
     setUserName,
     email,
     setEmail,
@@ -59,7 +59,7 @@ export default function Register() {
             <label className="mb-2">User Name: </label>
             <input
               type="text"
-              value={userName}
+              value={username}
               onChange={(event) => setUserName(event.target.value)}
               required
               className="rounded px-2 py-1"
@@ -91,7 +91,7 @@ export default function Register() {
         </div>
         <button
           type="submit"
-          className="bg-cyan-300 text-black font-bold mt-4 mb-4 px-4 py-2 border border-black rounded hover:bg-cyan-400"
+          className="bg-primary font-semibold mt-4 mb-4 px-4 py-2 border border-black rounded hover:bg-accents"
         >
           Sign Up
         </button>
@@ -107,7 +107,7 @@ export default function Register() {
 
         <p className="flex gap-2">
           Already have an account?
-          <Link to="/login" className="underline hover:text-cyan-300">
+          <Link to="/login" className="underline hover:text-accents">
             Sign In
           </Link>
         </p>

@@ -14,9 +14,11 @@ export function NavBar() {
   const { isAuthenticated, logout } = authContext;
 
   return (
-    <header className="flex justify-between items-center bg-gray-800 text-white p-4 w-full top-0">
+    <header className="flex justify-between items-center bg-primary text-white p-4 w-full top-0">
       <Link to="/">
-        <h1 className="text-3xl">Grand Store</h1>
+        <h1 className="text-5xl font-semibold drop-shadow-[3px_3px_1px_rgba(0,0,0,1.0)]">
+          Grand Store
+        </h1>
       </Link>
       {isAuthenticated ? (
         <div className="flex justify-center gap-4 mr-4">

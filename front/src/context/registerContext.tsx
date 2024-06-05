@@ -10,7 +10,7 @@ export const RegisterContext = createContext<RegisterContextProps | undefined>(
 export function RegisterProvider({ children }: { children: React.ReactNode }) {
   const [name, setName] = useState<string>("");
   const [lastName, setLastName] = useState<string>("");
-  const [userName, setUserName] = useState<string>("");
+  const [username, setUserName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [message, setMessage] = useState<string>("");
@@ -19,7 +19,7 @@ export function RegisterProvider({ children }: { children: React.ReactNode }) {
   const submitHandler = async (event: React.FormEvent) => {
     event.preventDefault();
     try {
-      await register(name, lastName, userName, email, password);
+      await register(name, lastName, username, email, password);
       setMessage(
         "Registration successful, please check your email for confirmation link."
       );
@@ -36,7 +36,7 @@ export function RegisterProvider({ children }: { children: React.ReactNode }) {
         setName,
         lastName,
         setLastName,
-        userName,
+        username,
         setUserName,
         email,
         setEmail,

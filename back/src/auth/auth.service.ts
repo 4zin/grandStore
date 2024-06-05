@@ -69,7 +69,7 @@ export class AuthService {
 
         if (!isEmailConfirmed.emailConfirmed) throw new HttpException('Please confirm your email', 403)
 
-        const payload = { id: findEmail.id, name: findEmail.name }
+        const payload = { id: findEmail.id, name: findEmail.name, username: findEmail.userName, email: findEmail.email, lastName: findEmail.lastName }
         const token = this.jwtService.sign(payload)
 
         const { password: _, ...userData } = findEmail

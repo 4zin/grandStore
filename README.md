@@ -17,6 +17,6 @@
 - [] Admin view
   - [] User details
   - [] User purchase details
-- [] User view
-  - [] Purchase details
+- [✔] User view
+  - [✔] Purchase details
 - [] redirect to a confirmation view. If confirm redirect to home

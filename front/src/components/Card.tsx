@@ -1,9 +1,13 @@
 import { useCart } from "../hooks/useCart";
 import { Products } from "../types";
-import { CartIcon } from "./Icons";
+import { AddCartIcon, RemoveCartIcon } from "./Icons";
 
 export default function Card({ products }: { products: Products[] }) {
-  const { addToCart } = useCart();
+  const { addToCart, removeFromCart, cart } = useCart();
+
+  const isInCart = (product: Products) => {
+    return cart.some((item) => item.id === product.id);
+  };
 
   return (
     <ul className="grid grid-cols-3 gap-4">
@@ -15,15 +19,30 @@ export default function Card({ products }: { products: Products[] }) {
           <img
             src={products.images}
             alt={products.title}
-            className="aspect-video w-64"
+            className="aspect-video w-64 rounded-md"
           />
           <div className="flex gap-4">
             <div className="flex flex-col items-center">
-              <h1>{products.title}</h1>
-              <p>Price: {products.price}</p>
-              <p>Quantity: {products.quantity}</p>
+              <h1>
+                <strong>{products.title}</strong>
+              </h1>
+              <p>
+                <strong>Price:</strong> {products.price}
+              </p>
+              <p>
+                <strong>Quantity:</strong> {products.quantity}
+              </p>
             </div>
-            <button onClick={() => addToCart(products)}>{<CartIcon />}</button>
+            <button
+              onClick={() => {
+                isInCart(products)
+                  ? removeFromCart(products)
+                  : addToCart(products);
+              }}
+              className="text-accents"
+            >
+              {isInCart(products) ? <RemoveCartIcon /> : <AddCartIcon />}
+            </button>
           </div>
         </li>
       ))}
