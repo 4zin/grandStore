@@ -63,11 +63,14 @@ export class AuthService {
 
         if (!checkPassword) throw new HttpException('Wrong password', 403)
 
-        const isEmailConfirmed = await this.prisma.user.findFirst({
-            where: { emailConfirmed }
+        const isEmailConfirmed = await this.prisma.user.findUnique({
+            where: { email }
         })        
 
         if (!isEmailConfirmed.emailConfirmed) throw new HttpException('Please confirm your email', 403)
+
+        console.log(isEmailConfirmed);
+        
 
         const payload = { id: findEmail.id, name: findEmail.name, username: findEmail.userName, email: findEmail.email, lastName: findEmail.lastName }
         const token = this.jwtService.sign(payload)
