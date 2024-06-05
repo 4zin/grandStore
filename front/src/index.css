@@ -18,7 +18,7 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: #2a2263;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -31,6 +31,7 @@ body {
   min-width: 320px;
   min-height: 100vh;
   font-family: 'Montserrat Variable', sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
 
 #root {

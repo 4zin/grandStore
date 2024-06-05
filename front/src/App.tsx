@@ -8,6 +8,7 @@ import { NavBar } from "./components/NavBar";
 import CreateProducts from "./views/products/CreateProducts";
 import { CartProvider } from "./context/cartContext";
 import Orders from "./views/products/Orders";
+import Profile from "./views/profile/Profile";
 
 function App() {
   return (
@@ -15,18 +16,26 @@ function App() {
       <CartProvider>
         <NavBar />
         <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/create" element={<CreateProducts />} />
           <Route
-            path="/"
+            path="/Orders"
             element={
               <ProtectedRoute>
-                <Home />
+                <Orders />
               </ProtectedRoute>
             }
           />
-          <Route path="/create" element={<CreateProducts />} />
-          <Route path="/Orders" element={<Orders />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRoute>
+                <Profile />
+              </ProtectedRoute>
+            }
+          />
         </Routes>
       </CartProvider>
     </React.Fragment>

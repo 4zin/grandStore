@@ -20,6 +20,17 @@ export class OrdersService {
             }
         }
 
+        for (const item of items) {
+            await this.prisma.products.update({
+                where: { id: item.productId },
+                data: {
+                    quantity: {
+                        decrement: item.quantity
+                    }
+                }
+            });
+        }
+
         const order = await this.prisma.order.create({
             data: {
                 userId,

@@ -14,8 +14,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     const token = localStorage.getItem("token");
 
     if (token) {
-      const decodedUser = jwtDecode<User>(token);
-      setUser(decodedUser);
+      try {
+        const decodedUser = jwtDecode<User>(token);
+        setUser(decodedUser);
+      } catch (error) {
+        console.error("Error decoding token:", error);
+      }
     }
     setLoading(false);
   }, []);

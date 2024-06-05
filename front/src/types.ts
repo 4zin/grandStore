@@ -3,7 +3,7 @@ export type RegisterContextProps = {
     setName: (name: string) => void,
     lastName: string,
     setLastName: (name: string) => void,
-    userName: string,
+    username: string,
     setUserName: (name: string) => void,
     email: string,
     setEmail: (name: string) => void,
@@ -30,7 +30,9 @@ export type LoginResponse = {
     user: {
         id: string;
         email: string;
+        username: string;
         userName: string;
+        lastName: string;
         name: string;
         role: string;
         confirmationToken: string | null;
@@ -41,8 +43,10 @@ export type LoginResponse = {
 export type User = {
     id: string;
   email: string;
+  username: string;
   userName: string;
   name: string;
+  lastName: string;
   role: string;
   confirmationToken: string | null;
   emailConfirmed: boolean;

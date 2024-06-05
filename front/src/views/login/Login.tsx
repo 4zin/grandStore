@@ -81,7 +81,7 @@ export default function Login() {
 
         <button
           type="submit"
-          className="bg-cyan-300 text-black font-bold mt-4 mb-4 px-4 py-2 border border-black rounded hover:bg-cyan-400"
+          className="bg-primary font-semibold mt-4 mb-4 px-4 py-2 border border-black rounded hover:bg-accents"
         >
           Sign In
         </button>
@@ -91,7 +91,7 @@ export default function Login() {
         {error && <p className="text-red-600 font-semibold">{error}</p>}
         <p className="flex gap-2">
           Don't have an account?
-          <Link to="/register" className="underline hover:text-cyan-300">
+          <Link to="/register" className="underline hover:text-accents">
             Sign Up
           </Link>
         </p>
